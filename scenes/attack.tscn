@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://6o8k1bd6nkfv"]
+
+[ext_resource type="Script" path="res://scripts/attacks/Attack.gd" id="1_riv0j"]
+[ext_resource type="Texture2D" uid="uid://dsoiders6m4aa" path="res://img/attacks/fire_animation-Sheet.png" id="2_kgrjw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77nbc"]
+atlas = ExtResource("2_kgrjw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y43ty"]
+atlas = ExtResource("2_kgrjw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a022y"]
+atlas = ExtResource("2_kgrjw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmfhv"]
+atlas = ExtResource("2_kgrjw")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xld7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77nbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y43ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a022y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmfhv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5olpu"]
+
+[node name="Attack" type="Area2D"]
+script = ExtResource("1_riv0j")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xld7s")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5olpu")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

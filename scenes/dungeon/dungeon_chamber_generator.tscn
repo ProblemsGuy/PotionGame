@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://craobm14hjhip"]
+
+[ext_resource type="Script" path="res://scenes/dungeon/dungeon_chamber_generator.gd" id="1_fkmuq"]
+
+[node name="DungeonChamberGenerator" type="Node2D"]
+script = ExtResource("1_fkmuq")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0.372549, 0.356863, 1)
+polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)

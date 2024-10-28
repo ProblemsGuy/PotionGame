@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgx3d11qkmbw2"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_t0d8k"]
+[ext_resource type="Texture2D" uid="uid://bfff0rn6gi420" path="res://img/Down_walk2.png" id="2_r5xnr"]
+[ext_resource type="Texture2D" uid="uid://c7eo0ft12f1tc" path="res://img/Left_walk2.png" id="3_lw1iv"]
+[ext_resource type="Texture2D" uid="uid://dthr6wa1pdwuq" path="res://img/Rightt_walk2.png" id="4_v67ad"]
+[ext_resource type="Texture2D" uid="uid://de6praulp4g0g" path="res://img/Up_walk2.png" id="5_i8sqi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0ii6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r5xnr")
+}],
+"loop": true,
+"name": &"down_still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lw1iv")
+}],
+"loop": true,
+"name": &"left_still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_v67ad")
+}],
+"loop": true,
+"name": &"right_still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_i8sqi")
+}],
+"loop": true,
+"name": &"up_still",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4t2qi"]
+size = Vector2(82, 87)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_t0d8k")
+
+[node name="PlayerAppearance" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l0ii6")
+animation = &"down_still"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4t2qi")

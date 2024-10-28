@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://brtutpqxs18lj"]
+
+[ext_resource type="Script" path="res://scenes/dungeon/dungeon_corridor_generator.gd" id="1_jn6ov"]
+
+[node name="DungeonCorridorGenerator" type="Node2D"]
+script = ExtResource("1_jn6ov")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0, 1, 1)
+polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)

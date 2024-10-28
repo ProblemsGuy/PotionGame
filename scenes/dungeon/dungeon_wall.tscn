@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://y0csufdxqea1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_memnt"]
+
+[node name="DungeonWall" type="Area2D"]
+
+[node name="PLACEHOLDERSPRITE" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(16, -16, 16, 16, -16, 16, -16, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_memnt")

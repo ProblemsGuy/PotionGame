@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://mjtcslb1noal"]
+
+[ext_resource type="Script" path="res://scenes/dungeon/dungeon_spawn.gd" id="1_b4746"]
+
+[node name="DungeonSpawn" type="Node2D"]
+script = ExtResource("1_b4746")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 1, 1, 1)
+polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)

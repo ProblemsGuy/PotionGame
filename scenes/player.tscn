@@ -1,0 +1,260 @@
+[gd_scene load_steps=38 format=3 uid="uid://dgx3d11qkmbw2"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_kvnla"]
+[ext_resource type="Texture2D" uid="uid://c5ji0rvglroci" path="res://img/down_walk.png" id="2_0exop"]
+[ext_resource type="Texture2D" uid="uid://cw3fior4t60cl" path="res://img/down_walk_spritesheett.png" id="3_cm3hd"]
+[ext_resource type="Texture2D" uid="uid://nlys6uwx5txb" path="res://img/left_walk.png" id="4_2bjrp"]
+[ext_resource type="Texture2D" uid="uid://c7d0jkt0rodud" path="res://img/left_walk_spritesheet.png" id="5_tax2q"]
+[ext_resource type="Texture2D" uid="uid://5ro0ilr4y7hn" path="res://img/right_walk.png" id="6_xxyf5"]
+[ext_resource type="Texture2D" uid="uid://xmlp2rui18t5" path="res://img/right_walk_spritesheet.png" id="7_l6ngn"]
+[ext_resource type="Texture2D" uid="uid://n5q8aba6g6sd" path="res://img/up_walk.png" id="8_r1pqp"]
+[ext_resource type="Texture2D" uid="uid://ctxvy8put7krp" path="res://img/up_walk_spritesheet.png" id="9_o81mn"]
+[ext_resource type="Script" path="res://scenes/PlayerRight.gd" id="10_cbk1w"]
+[ext_resource type="Script" path="res://scripts/player/playerstatemachine.gd" id="10_dlq1l"]
+[ext_resource type="Script" path="res://scripts/player/playerstateidle.gd" id="11_p2nay"]
+[ext_resource type="Script" path="res://scenes/PlayerLeft.gd" id="11_rhgwc"]
+[ext_resource type="Script" path="res://scenes/PlayerDown.gd" id="12_omtrp"]
+[ext_resource type="Script" path="res://scripts/player/playerstatewalking.gd" id="12_wh2xe"]
+[ext_resource type="Script" path="res://scripts/player/playerrunstate.gd" id="13_aj5hv"]
+[ext_resource type="Script" path="res://scenes/PlayerUp.gd" id="13_y8snq"]
+[ext_resource type="Script" path="res://scripts/player/playerstateattacking.gd" id="14_qwmuh"]
+[ext_resource type="PackedScene" uid="uid://6o8k1bd6nkfv" path="res://scenes/attack.tscn" id="15_11x8n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhill"]
+atlas = ExtResource("3_cm3hd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7xby"]
+atlas = ExtResource("3_cm3hd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0lm4"]
+atlas = ExtResource("3_cm3hd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iedk"]
+atlas = ExtResource("3_cm3hd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_my185"]
+atlas = ExtResource("5_tax2q")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f701l"]
+atlas = ExtResource("5_tax2q")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcey4"]
+atlas = ExtResource("5_tax2q")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klqjp"]
+atlas = ExtResource("5_tax2q")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkahe"]
+atlas = ExtResource("7_l6ngn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1542"]
+atlas = ExtResource("7_l6ngn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lc2n3"]
+atlas = ExtResource("7_l6ngn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20y3j"]
+atlas = ExtResource("7_l6ngn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7rfj"]
+atlas = ExtResource("9_o81mn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4861"]
+atlas = ExtResource("9_o81mn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htg41"]
+atlas = ExtResource("9_o81mn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd0iw"]
+atlas = ExtResource("9_o81mn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0ii6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0exop")
+}],
+"loop": true,
+"name": &"down_still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhill")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7xby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0lm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iedk")
+}],
+"loop": true,
+"name": &"down_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2bjrp")
+}],
+"loop": true,
+"name": &"left_still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_my185")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f701l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcey4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klqjp")
+}],
+"loop": true,
+"name": &"left_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_xxyf5")
+}],
+"loop": true,
+"name": &"right_still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkahe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1542")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lc2n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20y3j")
+}],
+"loop": true,
+"name": &"right_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_r1pqp")
+}],
+"loop": true,
+"name": &"up_still",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7rfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4861")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htg41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd0iw")
+}],
+"loop": true,
+"name": &"up_walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4t2qi"]
+size = Vector2(30.25, 30)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_kvnla")
+currentDirection = 2
+
+[node name="PlayerAppearance" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l0ii6")
+animation = &"down_walk"
+
+[node name="PlayerMainCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.125, 0)
+shape = SubResource("RectangleShape2D_4t2qi")
+
+[node name="PlayerRight" type="Area2D" parent="."]
+script = ExtResource("10_cbk1w")
+
+[node name="PlayerRightCollision" type="CollisionShape2D" parent="PlayerRight"]
+position = Vector2(32, 0)
+shape = SubResource("RectangleShape2D_4t2qi")
+
+[node name="PlayerLeft" type="Area2D" parent="."]
+script = ExtResource("11_rhgwc")
+
+[node name="PlayerLeftCollision" type="CollisionShape2D" parent="PlayerLeft"]
+position = Vector2(-32, 0)
+shape = SubResource("RectangleShape2D_4t2qi")
+
+[node name="PlayerDown" type="Area2D" parent="."]
+script = ExtResource("12_omtrp")
+
+[node name="PlayerDownCollision" type="CollisionShape2D" parent="PlayerDown"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_4t2qi")
+
+[node name="PlayerUp" type="Area2D" parent="."]
+script = ExtResource("13_y8snq")
+
+[node name="PlayerUpCollision" type="CollisionShape2D" parent="PlayerUp"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_4t2qi")
+
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("10_dlq1l")
+initial_state = NodePath("PlayerIdle")
+
+[node name="PlayerIdle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("11_p2nay")
+
+[node name="PlayerWalking" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("12_wh2xe")
+
+[node name="PlayerRunning" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("13_aj5hv")
+
+[node name="PlayerAttacking" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("14_qwmuh")
+attackScene = ExtResource("15_11x8n")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[connection signal="area_entered" from="PlayerRight" to="PlayerRight" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerRight" to="PlayerRight" method="_on_area_exited"]
+[connection signal="area_entered" from="PlayerLeft" to="PlayerLeft" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerLeft" to="PlayerLeft" method="_on_area_exited"]
+[connection signal="area_entered" from="PlayerDown" to="PlayerDown" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerDown" to="PlayerDown" method="_on_area_exited"]
+[connection signal="area_entered" from="PlayerUp" to="PlayerUp" method="_on_area_entered"]
+[connection signal="area_exited" from="PlayerUp" to="PlayerUp" method="_on_area_exited"]

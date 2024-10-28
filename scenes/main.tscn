@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3bxpwu3ccbxc"]
+
+[ext_resource type="PackedScene" uid="uid://bcclp38a745af" path="res://scenes/dungeon/dungeon_generator.tscn" id="1_tkvny"]
+
+[node name="Main" type="Node2D"]
+
+[node name="DungeonElementsHolder - MUST BE INDEX 0" type="Node2D" parent="."]
+
+[node name="DungeonGenerator" parent="." instance=ExtResource("1_tkvny")]
+position = Vector2(16, 16)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-16, -16)
+anchor_mode = 0
+zoom = Vector2(0.2, 0.2)
