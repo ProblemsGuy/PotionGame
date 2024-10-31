@@ -1,34 +1,29 @@
 extends Node2D
 
-@onready var MAIN_NODE = get_parent();
+@onready var gridNode = get_parent();
 var TILE_SIZE = Gamedefaults.TILE_SIZE;
 var tileNode : PackedScene;
-var dungeonOffset = Vector2(16,16);
 var startPoint : Vector2;
 var chamberId : int;
 var chamberScale;
 var active := false;
+const gridType = 3;
 
 signal complete;
 
 func calculateCurrentTileVector():
-	return (global_position-dungeonOffset)/TILE_SIZE;
+	return gridNode.local_to_map(global_position);
 
 func findRelativePosition():
-	return calculateCurrentTileVector() - startPoint;
+	return calculateCurrentTileVector() - Vector2i(startPoint);
 
 func moveToTile(tile: Vector2):
-	global_position = (TILE_SIZE*tile)+dungeonOffset;
+	global_position = gridNode.warpChildPosition(self,Vector2i(tile));
 
-func spawnNodeHere(nodeType,nodeName):
-	var newNode = nodeType.instantiate();
-	newNode.global_position = global_position;
-	newNode.name = nodeName+str(calculateCurrentTileVector());
+func spawnNodeHere(nodeType):
+	var newNode = gridNode.createSceneAtLocalPoint(nodeType,global_position);
 	newNode.add_to_group("Floor");
 	newNode.add_to_group("Chamber");
-	if chamberId == 0:
-		newNode.add_to_group("FirstChamber");
-	MAIN_NODE.add_child(newNode);
 	return newNode;
 
 func _process(_delta):
@@ -40,7 +35,7 @@ func _process(_delta):
 		var atEast = currentRelativePosition.x == chamberScale[0]-1
 		var atSouth = currentRelativePosition.y == chamberScale[1]-1
 		
-		var newFloor : Node = spawnNodeHere(tileNode,"DungeonFloor");
+		var newFloor : Node = spawnNodeHere(tileNode);
 		
 		if atNorth:
 			newFloor.add_to_group("Chamber"+str(chamberId)+"North");

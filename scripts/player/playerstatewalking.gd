@@ -1,4 +1,4 @@
 extends PlayerMovement
 
 func set_step_speed():
-	stepSpeed = 4;
+	stepSpeed = 150;

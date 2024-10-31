@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://mjtcslb1noal"]
 
-[ext_resource type="Script" path="res://scenes/dungeon/dungeon_spawn.gd" id="1_b4746"]
+[ext_resource type="Script" path="res://scripts/dungeon_gen/dungeon_spawn.gd" id="1_b4746"]
 
 [node name="DungeonSpawn" type="Node2D"]
 script = ExtResource("1_b4746")

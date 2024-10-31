@@ -2,10 +2,18 @@ extends State
 class_name PlayerMovement
 
 @onready var playerNode: CharacterBody2D = get_parent().get_parent();
+@onready var gridNode: MovementGrid = playerNode.gridNode;
 var stepSpeed: int;
 
 var actionOptions:= Gamedefaults.actionOptions;
 var currentInput: int;
+var directionVector: Vector2i;
+const directionDictonairy:= {
+	"right":Vector2i(1,0),
+	"left":Vector2i(-1,0),
+	"down":Vector2i(0,1),
+	"up":Vector2i(0,-1)
+}
 
 #Allows children states to set their own run speed
 func set_step_speed():
@@ -16,6 +24,7 @@ func get_current_input_direction():
 	for keyName in actionOptions:
 		if Input.is_action_pressed(keyName.to_lower()):
 			playerNode.currentDirection = actionOptions[keyName];
+			directionVector = directionDictonairy[keyName];
 			return actionOptions[keyName];
 	return -1;
 
@@ -32,26 +41,10 @@ func enter():
 
 #Walk function; handles the player's movement and sprite changes
 func walk():
-	if !playerNode.directionHasBlock[currentInput]:
-		playerNode.targetPosition = find_closest_tile(playerNode.currentPosition);
+	if gridNode.isGridPointValidInDirection(playerNode.global_position,directionVector):
+		playerNode.targetPosition = gridNode.updateChildPosition(playerNode,directionVector);
 	else:
 		playerNode.targetPosition = playerNode.position;
-
-#Finds the closest tile point to where the player is right now
-func find_closest_tile(point: Vector2):
-	var x_difference = fmod(point.x-playerNode.startingPosition.x,Gamedefaults.TILE_SIZE.x);
-	var y_difference = fmod(point.y-playerNode.startingPosition.y,Gamedefaults.TILE_SIZE.y);
-	match currentInput:
-		0:
-			return Vector2(point.x+(Gamedefaults.TILE_SIZE.x-x_difference),point.y)
-		1:
-			return Vector2(point.x-(Gamedefaults.TILE_SIZE.x-x_difference),point.y)
-		2:
-			return Vector2(point.x,point.y+(Gamedefaults.TILE_SIZE.y-y_difference))
-		3:
-			return Vector2(point.x,point.y-(Gamedefaults.TILE_SIZE.y-y_difference))
-		_:
-			return point;
 
 #Handles running; overwritten in "PlayerRunning" to change back to walking when shift is released.
 func shift_run():
@@ -60,12 +53,11 @@ func shift_run():
 
 func physics_update(delta):
 	shift_run();
-	playerNode.position += (playerNode.targetPosition - playerNode.currentPosition) * stepSpeed * delta
+	playerNode.global_position = playerNode.global_position.move_toward(playerNode.targetPosition,delta*stepSpeed);
 	
 	# Check if the player is close enough to the target position to snap to it
-	if playerNode.position.distance_to(playerNode.currentPosition) >= playerNode.targetPosition.distance_to(playerNode.currentPosition):
-		playerNode.position = playerNode.targetPosition
-		playerNode.currentPosition = playerNode.position
+	if playerNode.global_position == playerNode.targetPosition:
+		playerNode.global_position = playerNode.targetPosition
 		if get_current_input_direction() == currentInput && currentInput != -1:
 			walk();
 		else:

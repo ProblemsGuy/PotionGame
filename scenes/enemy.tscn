@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://bj8r232ma22ja"]
 
 [ext_resource type="Texture2D" uid="uid://x6jwxc0du02a" path="res://img/enemy_butterflyback-sheet.png" id="1_m0a1u"]
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_tvcl7"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_tvcl7"]
 [ext_resource type="Texture2D" uid="uid://dsbotsxouf0fg" path="res://img/enemy_butterflyfront-sheet.png" id="2_iwy47"]
 [ext_resource type="Texture2D" uid="uid://btdx8fh2t4v3i" path="res://img/enemy_butterflyleft-sheet.png" id="3_cilk3"]
 [ext_resource type="Texture2D" uid="uid://cpiefuuxbtodh" path="res://img/enemy_butterflyright-sheet.png" id="4_4vbey"]

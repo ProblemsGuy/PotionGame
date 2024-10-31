@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3yia13fdy7u3"]
+[gd_scene load_steps=3 format=3 uid="uid://d3yia13fdy7u3"]
+
+[ext_resource type="Script" path="res://scripts/dungeon_gen/dungeon_floor.gd" id="1_tla4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7x4p"]
 size = Vector2(26, 26)
 
 [node name="DungeonFloor" type="Area2D"]
+script = ExtResource("1_tla4b")
 
 [node name="PLACEHOLDERSPRITE" type="Polygon2D" parent="."]
 color = Color(1, 1, 0, 1)

@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://craobm14hjhip"]
 
-[ext_resource type="Script" path="res://scenes/dungeon/dungeon_chamber_generator.gd" id="1_fkmuq"]
+[ext_resource type="Script" path="res://scripts/dungeon_gen/dungeon_chamber_generator.gd" id="1_xovc3"]
 
 [node name="DungeonChamberGenerator" type="Node2D"]
-script = ExtResource("1_fkmuq")
+script = ExtResource("1_xovc3")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(1, 0.372549, 0.356863, 1)

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp6nj83dx5sdy"]
+
+[ext_resource type="Script" path="res://scripts/MovementGrid.gd" id="1_mkwmh"]
+
+[sub_resource type="TileSet" id="TileSet_p4xur"]
+tile_size = Vector2i(32, 32)
+
+[node name="MovementGrid" type="TileMap"]
+tile_set = SubResource("TileSet_p4xur")
+rendering_quadrant_size = 32
+format = 2
+script = ExtResource("1_mkwmh")

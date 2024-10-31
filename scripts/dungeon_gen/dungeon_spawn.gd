@@ -14,5 +14,5 @@ func _process(delta):
 	playerSpawn.startingPosition = global_position;
 	playerSpawn.currentPosition = global_position;
 	playerSpawn.targetPosition = global_position;
-	get_parent().get_parent().add_child(playerSpawn);
+	get_parent().add_child(playerSpawn);
 	queue_free();

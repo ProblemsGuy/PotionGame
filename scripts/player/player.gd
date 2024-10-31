@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-@onready var startingPosition := position;
-var currentPosition: Vector2 = startingPosition;
-var targetPosition: Vector2 = startingPosition;
+var startingPosition: Vector2 
+var targetPosition: Vector2 
+
+var gridNode: MovementGrid;
+const gridType = 0;
 
 var directionHasBlock: Array = [false,false,false,false];
 
@@ -29,12 +31,21 @@ const animationSprites:= [
 	}
 ]
 
+func _ready():
+	gridNode = get_parent();
+	if gridNode == null:
+		push_error("PLAYER NEEDS MOVEMENT GRID")
+		get_tree().quit();
+	
+	startingPosition = gridNode.local_to_map(global_position);
+	targetPosition = startingPosition;
+
 func _process(_delta):
 	current_state = $PlayerStateMachine.current_state;
 	states = $PlayerStateMachine.states;
 	
 	if current_state == states["playeridle"]:
 		$PlayerAppearance.play(animationSprites[currentDirection].stillSprite); 
-	if current_state == states["playerwalking"]:
+	if current_state == states["playerwalking"] or current_state == states["playerrunning"]:
 		$PlayerAppearance.play(animationSprites[currentDirection].walkSprite);
 		

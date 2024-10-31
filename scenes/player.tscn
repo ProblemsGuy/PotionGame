@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dgx3d11qkmbw2"]
+[gd_scene load_steps=34 format=3 uid="uid://dgx3d11qkmbw2"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_kvnla"]
 [ext_resource type="Texture2D" uid="uid://c5ji0rvglroci" path="res://img/down_walk.png" id="2_0exop"]
@@ -9,14 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://xmlp2rui18t5" path="res://img/right_walk_spritesheet.png" id="7_l6ngn"]
 [ext_resource type="Texture2D" uid="uid://n5q8aba6g6sd" path="res://img/up_walk.png" id="8_r1pqp"]
 [ext_resource type="Texture2D" uid="uid://ctxvy8put7krp" path="res://img/up_walk_spritesheet.png" id="9_o81mn"]
-[ext_resource type="Script" path="res://scenes/PlayerRight.gd" id="10_cbk1w"]
 [ext_resource type="Script" path="res://scripts/player/playerstatemachine.gd" id="10_dlq1l"]
 [ext_resource type="Script" path="res://scripts/player/playerstateidle.gd" id="11_p2nay"]
-[ext_resource type="Script" path="res://scenes/PlayerLeft.gd" id="11_rhgwc"]
-[ext_resource type="Script" path="res://scenes/PlayerDown.gd" id="12_omtrp"]
 [ext_resource type="Script" path="res://scripts/player/playerstatewalking.gd" id="12_wh2xe"]
 [ext_resource type="Script" path="res://scripts/player/playerrunstate.gd" id="13_aj5hv"]
-[ext_resource type="Script" path="res://scenes/PlayerUp.gd" id="13_y8snq"]
 [ext_resource type="Script" path="res://scripts/player/playerstateattacking.gd" id="14_qwmuh"]
 [ext_resource type="PackedScene" uid="uid://6o8k1bd6nkfv" path="res://scenes/attack.tscn" id="15_11x8n"]
 
@@ -202,34 +198,6 @@ animation = &"down_walk"
 position = Vector2(-0.125, 0)
 shape = SubResource("RectangleShape2D_4t2qi")
 
-[node name="PlayerRight" type="Area2D" parent="."]
-script = ExtResource("10_cbk1w")
-
-[node name="PlayerRightCollision" type="CollisionShape2D" parent="PlayerRight"]
-position = Vector2(32, 0)
-shape = SubResource("RectangleShape2D_4t2qi")
-
-[node name="PlayerLeft" type="Area2D" parent="."]
-script = ExtResource("11_rhgwc")
-
-[node name="PlayerLeftCollision" type="CollisionShape2D" parent="PlayerLeft"]
-position = Vector2(-32, 0)
-shape = SubResource("RectangleShape2D_4t2qi")
-
-[node name="PlayerDown" type="Area2D" parent="."]
-script = ExtResource("12_omtrp")
-
-[node name="PlayerDownCollision" type="CollisionShape2D" parent="PlayerDown"]
-position = Vector2(0, 32)
-shape = SubResource("RectangleShape2D_4t2qi")
-
-[node name="PlayerUp" type="Area2D" parent="."]
-script = ExtResource("13_y8snq")
-
-[node name="PlayerUpCollision" type="CollisionShape2D" parent="PlayerUp"]
-position = Vector2(0, -32)
-shape = SubResource("RectangleShape2D_4t2qi")
-
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("10_dlq1l")
 initial_state = NodePath("PlayerIdle")
@@ -249,12 +217,3 @@ attackScene = ExtResource("15_11x8n")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
-
-[connection signal="area_entered" from="PlayerRight" to="PlayerRight" method="_on_area_entered"]
-[connection signal="area_exited" from="PlayerRight" to="PlayerRight" method="_on_area_exited"]
-[connection signal="area_entered" from="PlayerLeft" to="PlayerLeft" method="_on_area_entered"]
-[connection signal="area_exited" from="PlayerLeft" to="PlayerLeft" method="_on_area_exited"]
-[connection signal="area_entered" from="PlayerDown" to="PlayerDown" method="_on_area_entered"]
-[connection signal="area_exited" from="PlayerDown" to="PlayerDown" method="_on_area_exited"]
-[connection signal="area_entered" from="PlayerUp" to="PlayerUp" method="_on_area_entered"]
-[connection signal="area_exited" from="PlayerUp" to="PlayerUp" method="_on_area_exited"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://brtutpqxs18lj"]
 
-[ext_resource type="Script" path="res://scenes/dungeon/dungeon_corridor_generator.gd" id="1_jn6ov"]
+[ext_resource type="Script" path="res://scripts/dungeon_gen/dungeon_corridor_generator.gd" id="1_jn6ov"]
 
 [node name="DungeonCorridorGenerator" type="Node2D"]
 script = ExtResource("1_jn6ov")

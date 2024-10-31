@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dodai70ex2veg"]
+
+[ext_resource type="Script" path="res://scripts/dungeon_gen/dungeon_flood_fill.gd" id="1_bix2b"]
+
+[node name="DungeonFloodFill" type="Node2D"]
+script = ExtResource("1_bix2b")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)

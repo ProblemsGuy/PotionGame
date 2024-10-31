@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var MAIN_NODE = get_parent();
+@onready var gridNode = get_parent();
 var tileNode : PackedScene;
 var startPoint:Node;
 var endPoint:Node;
@@ -14,15 +14,13 @@ var endVector:Vector2;
 var midVector1:Vector2;
 var midVector2:Vector2;
 var currentDirection:Vector2;
+const gridType = 3;
 
 signal complete;
 
-func spawnNodeHere(nodeType,nodeName):
-	var newNode = nodeType.instantiate();
-	newNode.global_position = global_position;
-	newNode.name = nodeName+str(calculateCurrentTileVector());
+func spawnNodeHere(nodeType):
+	var newNode = gridNode.createSceneAtLocalPoint(nodeType,global_position);
 	newNode.add_to_group("Floor");
-	MAIN_NODE.add_child(newNode);
 	return newNode;
 
 func calculateCurrentTileVector():
@@ -97,4 +95,4 @@ func _process(_delta):
 			queue_free();
 			return;
 		
-		spawnNodeHere(tileNode,"DungeonFloor")
+		spawnNodeHere(tileNode)
